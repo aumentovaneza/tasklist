@@ -24,12 +24,14 @@ class TaskRequest extends FormRequest
     public static function rules()
     {
         return [
-            'name' => 'string|required',
-            'description' => 'null',
-            'user_id' => 'integer|required',
-            'task_id' => 'integer|required',
-            'is_child' => 'boolean',
-            'parent_task_id' => 'integer|required_if:is_child,==,true',
+            'id'                => 'integer|null',
+            'name'              => 'string|required',
+            'description'       => 'null',
+            'status_id'         => 'integer|required',
+            'is_child'          => 'boolean',
+            'parent_task_id'    => 'integer|required_if:is_child,==,true',
+            'start_date'        => 'datetime',
+            'end_date'          => 'datetime|null',
         ];
     }
 }

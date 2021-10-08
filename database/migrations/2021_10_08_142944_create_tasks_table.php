@@ -21,6 +21,8 @@ class CreateTasksTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('is_child')->default(false);
             $table->integer('parent_task_id')->nullable();
+            $table->datetime('start_date');
+            $table->datetime('end_date')->nullable();
             $table->timestamps();
         });
     }

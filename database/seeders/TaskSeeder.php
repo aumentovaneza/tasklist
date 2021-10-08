@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -31,7 +32,9 @@ class TaskSeeder extends Seeder
                     'name' => $faker->sentence,
                     'description' => $faker->paragraph,
                     'is_child' => false,
-                    'parent_task_id' => null
+                    'parent_task_id' => null,
+                    'start_date' => Carbon::now(),
+                    'end_date' => Carbon::now(),
                 ]);
             }
         }
