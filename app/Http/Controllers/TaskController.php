@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
-    public function getTaskByID(Request $request)
+    public function getTaskByID($id)
     {
-        $task = Task::find($request->id);
+        $task = Task::find($id);
 
         return response([
             'data' => new TaskResource($task),
@@ -55,9 +55,9 @@ class TaskController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        $task = Task::find($request->task_id);
+        $task = Task::find($id);
         DB::transaction();
         try {
 
@@ -78,9 +78,9 @@ class TaskController extends Controller
         }
     }
 
-    public function restoreTask(Request $request)
+    public function restoreTask($id)
     {
-        $task = Task::withTrashed()->find($request->task_id)->restore();
+        $task = Task::withTrashed()->find($id)->restore();
 
         if(!empty($task->subtasks)){
             foreach($task->subtasks as $subtask){
