@@ -10,4 +10,9 @@ class PagesController extends Controller
     {
         return view('login');
     }
+
+    public function dashboardPage()
+    {
+        return view('dashboard');
+    }
 }

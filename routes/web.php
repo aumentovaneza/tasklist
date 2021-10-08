@@ -4,6 +4,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskStatusController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [PagesController::class, 'loginPage'])->name('home');
+Route::get('/dashboard', [PagesController::class, 'dashboardPage'])->middleware('auth')->name('dashboard');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     // User
