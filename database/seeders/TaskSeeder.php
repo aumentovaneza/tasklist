@@ -26,6 +26,7 @@ class TaskSeeder extends Seeder
 
         foreach($users as $user){
             for($count = 0; $count < 20; $count++){
+
                 Task::create([
                     'user_id' => $user->id,
                     'status_id' => $statuses->random(1)->first()->id,
@@ -35,6 +36,7 @@ class TaskSeeder extends Seeder
                     'parent_task_id' => null,
                     'start_date' => Carbon::now(),
                     'end_date' => Carbon::now(),
+                    'order' => $count + 1
                 ]);
             }
         }

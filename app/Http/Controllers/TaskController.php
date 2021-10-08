@@ -54,4 +54,41 @@ class TaskController extends Controller
             return response(['success' => false, 'message' => $e->getMessage()], 422);
         }
     }
+
+    public function delete(Request $request)
+    {
+        $task = Task::find($request->task_id);
+        DB::transaction();
+        try {
+
+            if (empty($task->subtasks)) {
+                $task->delete();
+            } else {
+                $subtasks = $task->subtasks;
+
+                foreach ($subtasks as $subtask) {
+                    $subtask->delete();
+                }
+            }
+
+            return response(['message' => 'Successfully deleted task'], 200);
+
+        } catch (\Exception $e) {
+            return response(['success' => false, 'message' => $e->getMessage()], 422);
+        }
+    }
+
+    public function restoreTask(Request $request)
+    {
+        $task = Task::withTrashed()->find($request->task_id)->restore();
+
+        if(!empty($task->subtasks)){
+            foreach($task->subtasks as $subtask){
+                Task::withTrashed()->find($subtask->id)->restore();
+            }
+        }
+
+        return response(['message' => 'Successfully restored task/s'], 200);
+
+    }
 }

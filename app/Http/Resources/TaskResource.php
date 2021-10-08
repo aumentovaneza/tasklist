@@ -18,6 +18,7 @@ class TaskResource extends JsonResource
             'id'                => $this->id,
             'name'              => $this->name,
             'description'       => $this->description,
+            'order'             => $this->order,
             'status'            => new BasicStatus($this->status),
             'user'              => new BasicUserResource($this->user),
             'subtasks'          => empty($this->subtasks) ? null : BasicTaskResource::collection($this->subtasks),

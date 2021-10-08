@@ -18,6 +18,7 @@ class BasicTaskResource extends JsonResource
             'id'            => $this->id,
             'name'          => $this->name,
             'description'   => $this->description,
+            'order'         => $this->order,
             'status'        => new BasicStatus($this->status)
         ];
     }

@@ -12,7 +12,7 @@ class Task extends Model
 
     protected $table = 'tasks';
     protected $fillable = [
-        'user_id', 'status_id', 'name', 'description', 'is_child', 'parent_task_id','start_date','end_date'
+        'user_id', 'status_id', 'name', 'description', 'is_child', 'parent_task_id','start_date','end_date', 'order'
     ];
     protected $dates = ['deleted_at'];
 

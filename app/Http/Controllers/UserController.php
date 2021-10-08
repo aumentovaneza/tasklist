@@ -10,8 +10,9 @@ class UserController extends Controller
 {
     public function getTasks()
     {
+        $tasks = Task::where('user_id', Auth::user()->id)->withNoTrashed();
         return response([
-            'data' => TaskResource::collection(Auth::user()->tasks),
+            'data' => TaskResource::collection($tasks),
             'message' => 'Successfully retrieved user tasks'
         ], 200);
     }
