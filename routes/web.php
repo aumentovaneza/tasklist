@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskStatusController;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [PagesController::class, 'loginPage'])->name('home');
-Route::get('/dashboard', [PagesController::class, 'dashboardPage'])->middleware('auth')->name('dashboard');
+Route::get('/dashboard', [PagesController::class, 'dashboardPage'])->name('dashboard');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     // User

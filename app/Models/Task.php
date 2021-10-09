@@ -23,7 +23,7 @@ class Task extends Model
 
     public function status()
     {
-        return $this->hasOne(TaskStatus::class);
+        return $this->hasOne(TaskStatus::class,'id','status_id');
     }
 
     public function subtasks()

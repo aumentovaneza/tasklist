@@ -42,6 +42,9 @@ Vue.use(VueToastr);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('sign-out-button', require('./components/SignOutButton.vue').default);
+Vue.component('generic-button', require('./components/ButtonComponent.vue').default);
+Vue.component('task-item-component', require('./components/TaskItemComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
