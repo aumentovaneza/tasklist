@@ -23,16 +23,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="pt-5">
-                    <div class="flex justify-end p-5">
-                        <button @click="hideModal()" type="button" class="text-white py-2 px-6 border-2 border-red-500 bg-red-500 rounded-md shadow-sm text-sm font-medium bg-transparent hover:bg-red-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                            Cancel
-                        </button>
-                        <button @click="downloadData()" type="button" class="ml-3 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">
-                            Download
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

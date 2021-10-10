@@ -50,6 +50,7 @@ Vue.component('new-status-modal-component', require('./components/modals/NewStat
 Vue.component('download-data-modal-component', require('./components/modals/DownloadDataModal.vue').default);
 Vue.component('restore-data-modal-component', require('./components/modals/RestoreArchivedTasksModal.vue').default);
 Vue.component('task-item-restore-component', require('./components/TaskItemRestoreComponent.vue').default);
+Vue.component('statistics-modal-component', require('./components/modals/StatisticsModal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

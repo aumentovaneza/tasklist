@@ -102,12 +102,6 @@ class TaskController extends Controller
     {
         $task = Task::onlyTrashed()->where('id',$id)->first()->restore();
 
-//        if(!empty($task->subtasks)){
-//            foreach($task->subtasks as $subtask){
-//                Task::withTrashed()->find($subtask->id)->restore();
-//            }
-//        }
-
         return response(['message' => 'Successfully restored task/s'], 200);
 
     }
@@ -146,5 +140,36 @@ class TaskController extends Controller
             fclose($file);
         };
         return response()->stream($callback, 200, $headers);
+    }
+
+    public function getStatistics()
+    {
+        $tasks = Task::where('user_id', Auth::user()->id)->with('status')->get();
+        $completed = 0;
+        $cancelled = 0;
+        $pending = 0;
+        $others = 0;
+
+        foreach($tasks as $task){
+
+            if($task->status->name === 'Complete') {
+                ++$completed;
+            } elseif($task->status->name === 'Cancelled'){
+                ++$cancelled;
+            } elseif($task->status->name === 'Pending'){
+                ++$pending;
+            } else {
+                ++$others;
+            }
+
+        }
+
+        return response(['data' => [
+            'completed' => $completed,
+            'cancelled' => $cancelled,
+            'pending'   => $pending,
+            'others'    => $others
+        ]
+        ]);
     }
 }

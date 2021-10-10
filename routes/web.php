@@ -35,8 +35,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::post('restore/task/{id}', [TaskController::class,'restoreTask'])->name('restore.task');
     Route::get('task/get/parent/{id}', [TaskController::class, 'getParentId'])->name('get.task.parent.id');
     Route::get('tasks/download', [TaskController::class,'downloadTasks'])->name('download.data');
-    Route::get('tasks/get/archived',[TaskController::class, 'getArchivedTasks']);
-
+    Route::get('tasks/get/archived',[TaskController::class, 'getArchivedTasks'])->name('get.archived.tasks');
+    Route::get('tasks/get/stats',[TaskController::class, 'getStatistics'])->name('get.stats');
     //Task Statuses
     Route::get('get/all/statuses', [TaskStatusController::class, 'getAllStatusesByUser'])->name('get.all.statuses.by.user');
     Route::post('create/new/status', [TaskStatusController::class, 'create'])->name('create.new.status');
