@@ -13,6 +13,7 @@
         <task-modal-component :showModal="showCreateNewTaskModal" :action="action" :parent="parent" @click="hideModal" ref="newTask"></task-modal-component>
         <new-status-modal-component :showModal="showNewStatusModal" @click="hideNewStatusModal"></new-status-modal-component>
         <download-data-modal-component :showModal="showDownloadDataModal" @click="hideDownloadDataModal"></download-data-modal-component>
+        <restore-data-modal-component :showModal="showRestoreDataModal" :action="action" @click="hideRestoreDataModal"></restore-data-modal-component>
     </div>
 </template>
 
@@ -25,7 +26,8 @@ export default {
             'class' : "",
             'showCreateNewTaskModal' : false,
             'showNewStatusModal' : false,
-            'showDownloadDataModal' : false
+            'showDownloadDataModal' : false,
+            'showRestoreDataModal' : false
         }
     },
     methods: {
@@ -60,6 +62,9 @@ export default {
             if(this.action === 'download_data') {
                 this.showDownloadDataModal = true;
             }
+            if(this.action === 'restore_task') {
+                this.showRestoreDataModal = true;
+            }
         },
         hideModal() {
             this.showCreateNewTaskModal = false;
@@ -69,6 +74,9 @@ export default {
         },
         hideDownloadDataModal() {
             this.showDownloadDataModal = false;
+        },
+        hideRestoreDataModal(){
+            this.showRestoreDataModal = false;
         }
     }
 }

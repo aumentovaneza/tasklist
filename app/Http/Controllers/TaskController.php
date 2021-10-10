@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
+use App\Http\Resources\BasicTaskResource;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Carbon\Carbon;
@@ -88,15 +89,24 @@ class TaskController extends Controller
         }
     }
 
+    public function getArchivedTasks()
+    {
+        $tasks = Task::where('user_id', Auth::user()->id)
+            ->onlyTrashed()
+            ->get();
+
+        return response(['data' => BasicTaskResource::collection($tasks)]);
+    }
+
     public function restoreTask($id)
     {
-        $task = Task::withTrashed()->find($id)->restore();
+        $task = Task::onlyTrashed()->where('id',$id)->first()->restore();
 
-        if(!empty($task->subtasks)){
-            foreach($task->subtasks as $subtask){
-                Task::withTrashed()->find($subtask->id)->restore();
-            }
-        }
+//        if(!empty($task->subtasks)){
+//            foreach($task->subtasks as $subtask){
+//                Task::withTrashed()->find($subtask->id)->restore();
+//            }
+//        }
 
         return response(['message' => 'Successfully restored task/s'], 200);
 

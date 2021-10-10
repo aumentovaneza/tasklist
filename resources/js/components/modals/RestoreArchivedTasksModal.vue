@@ -6,7 +6,7 @@
                 <!--header-->
                 <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                     <h3 class="text-xl font-semibold">
-                        <span class="wide">Download Data Modal</span>
+                        <span class="wide">Restore Archived Tasks Modal</span>
                     </h3>
                     <button class="p-1 text-gray-500 ml-auto bg-transparent border-0 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" @click="hideModal()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -16,28 +16,11 @@
                 </div>
                 <div class="space-y-8 sm:space-y-5">
                     <div class="space-y-6 p-5 sm:space-y-5">
-                        <form class="space-y-8 divide-y divide-gray-200">
-                            <div class="space-y-8 divide-y divide-gray-200">
-                                <div>
-                                    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                        <div class="sm:col-span-6">
-                                            <label class="block text-sm font-medium text-gray-700">
-                                                Data Type
-                                            </label>
-                                            <div class="mt-1">
-                                                <select v-model="data_type"
-                                                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                                >
-                                                    <option class="py-1 sm:text-sm"  :value="json">JSON</option>
-                                                    <option class="py-1 sm:text-sm"  :value="xlsx">EXCEL</option>
-                                                    <option class="py-1 sm:text-sm"  :value="csv">CSV</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                            <ul role="list" class="divide-y divide-gray-200">
+                                <task-item-restore-component v-for="task in archived" :task="task" :key="task.id"></task-item-restore-component>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="pt-5">
@@ -57,24 +40,26 @@
 
 <script>
 export default {
-    name: "DownloadDataModal",
-    props : ['showModal'],
+    name: "RestoreArchivedTasksModal",
+    props : ['showModal','action'],
     data : function() {
         return {
-            'data_type' : "csv"
+            archived : []
+        }
+    },
+    mounted(){
+        if(this.action === 'restore_task'){
+            this.getArchived();
         }
     },
     methods : {
+        getArchived(){
+            axios.get('../user/tasks/get/archived').then((response) => {
+                this.archived  = response.data.data;
+            });
+        },
         hideModal() {
             this.$emit("click", this.showModal);
-        },
-        downloadData() {
-            axios.get('../user/tasks/download',{
-                responseType: 'blob',
-            }).then((data) => {
-                var url = '../user/tasks/download';
-                window.open(url,"_blank");
-            });
         },
     }
 }
