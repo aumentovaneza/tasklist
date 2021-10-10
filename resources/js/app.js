@@ -46,6 +46,7 @@ Vue.component('sign-out-button', require('./components/SignOutButton.vue').defau
 Vue.component('generic-button', require('./components/ButtonComponent.vue').default);
 Vue.component('task-item-component', require('./components/TaskItemComponent.vue').default);
 Vue.component('task-modal-component', require('./components/modals/TaskModal.vue').default);
+Vue.component('new-status-modal-component', require('./components/modals/NewStatusModal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

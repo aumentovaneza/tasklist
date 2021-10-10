@@ -56,7 +56,7 @@
             <div class="mt-6 flex flex-col justify-stretch">
                 <generic-button text='View Statistics' color="blue" action="#"></generic-button>
                 <generic-button text='Archived Tasks' color="yellow" action="#"></generic-button>
-                <generic-button text='Create new status' color="purple" action="#"></generic-button>
+                <generic-button text='Create new status' color="purple" action="create_new_status"></generic-button>
                 <generic-button text='Download Data' color="green" action="#"></generic-button>
             </div>
         </div>

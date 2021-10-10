@@ -11,6 +11,7 @@
         </button>
 
         <task-modal-component :showModal="showCreateNewTaskModal" :action="action" :parent="parent" @click="hideModal" ref="newTask"></task-modal-component>
+        <new-status-modal-component :showModal="showNewStatusModal" @click="hideNewStatusModal"></new-status-modal-component>
     </div>
 </template>
 
@@ -21,7 +22,8 @@ export default {
     data : function() {
         return {
             'class' : "",
-            'showCreateNewTaskModal' : false
+            'showCreateNewTaskModal' : false,
+            'showNewStatusModal' : false
         }
     },
     methods: {
@@ -50,9 +52,16 @@ export default {
             if (this.action === 'create_new_task') {
                 this.showCreateNewTaskModal = true;
             }
+            if(this.action === 'create_new_status'){
+                this.showNewStatusModal = true;
+            }
         },
         hideModal() {
             this.showCreateNewTaskModal = false;
+        },
+        hideNewStatusModal() {
+            this.showNewStatusModal = false;
+
         }
     }
 }

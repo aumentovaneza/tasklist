@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewStatusRequest;
 use App\Http\Requests\TaskRequest;
 use App\Http\Resources\BasicTaskStatusResource;
 use App\Models\TaskStatus;
@@ -21,9 +22,9 @@ class TaskStatusController extends Controller
         ], 200);
     }
 
-    public function create(TaskRequest $request)
+    public function create(NewStatusRequest $request)
     {
-        DB::transaction();
+        DB::beginTransaction();
 
         try{
             $status = TaskStatus::create([

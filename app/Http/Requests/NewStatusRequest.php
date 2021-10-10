@@ -25,7 +25,6 @@ class NewStatusRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
-            'user_id' => 'string|required'
         ];
     }
 }
