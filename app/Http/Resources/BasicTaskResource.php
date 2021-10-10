@@ -15,11 +15,13 @@ class BasicTaskResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'            => $this->id,
-            'name'          => $this->name,
-            'description'   => $this->description,
-            'order'         => $this->order,
-            'status'        => new BasicStatus($this->status)
+            'id'                => $this->id,
+            'name'              => $this->name,
+            'description'       => $this->description,
+            'order'             => $this->order,
+            'status'            => $this->status->name,
+            'start_date'        => $this->start_date,
+            'parent_task_id'    => $this->parent_task_id
         ];
     }
 }

@@ -10,14 +10,14 @@
             {{ text }}
         </button>
 
-        <creat-new-task-component :showModal="showCreateNewTaskModal" @click="hideNewTaskModal" ref="newTask"></creat-new-task-component>
+        <task-modal-component :showModal="showCreateNewTaskModal" :action="action" :parent="parent" @click="hideModal" ref="newTask"></task-modal-component>
     </div>
 </template>
 
 <script>
 export default {
     name: "ButtonComponent",
-    props: ['color','text','action','url'],
+    props: ['color','text','action','url', 'parent'],
     data : function() {
         return {
             'class' : "",
@@ -51,7 +51,7 @@ export default {
                 this.showCreateNewTaskModal = true;
             }
         },
-        hideNewTaskModal() {
+        hideModal() {
             this.showCreateNewTaskModal = false;
         }
     }

@@ -77,6 +77,17 @@ class TaskController extends Controller
         return response(['message' => 'Successfully deleted task'], 200);
     }
 
+    public function getParentId($id)
+    {
+        $task = Task::find($id);
+
+        if($task->parent_task_id) {
+            return response(['data' => $task->parent_task_id]);
+        } else {
+            return response(['data' => null]);
+        }
+    }
+
     public function restoreTask($id)
     {
         $task = Task::withTrashed()->find($id)->restore();
