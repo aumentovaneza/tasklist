@@ -47,6 +47,7 @@ Vue.component('generic-button', require('./components/ButtonComponent.vue').defa
 Vue.component('task-item-component', require('./components/TaskItemComponent.vue').default);
 Vue.component('task-modal-component', require('./components/modals/TaskModal.vue').default);
 Vue.component('new-status-modal-component', require('./components/modals/NewStatusModal.vue').default);
+Vue.component('download-data-modal-component', require('./components/modals/DownloadDataModal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

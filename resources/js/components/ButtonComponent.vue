@@ -12,6 +12,7 @@
 
         <task-modal-component :showModal="showCreateNewTaskModal" :action="action" :parent="parent" @click="hideModal" ref="newTask"></task-modal-component>
         <new-status-modal-component :showModal="showNewStatusModal" @click="hideNewStatusModal"></new-status-modal-component>
+        <download-data-modal-component :showModal="showDownloadDataModal" @click="hideDownloadDataModal"></download-data-modal-component>
     </div>
 </template>
 
@@ -23,7 +24,8 @@ export default {
         return {
             'class' : "",
             'showCreateNewTaskModal' : false,
-            'showNewStatusModal' : false
+            'showNewStatusModal' : false,
+            'showDownloadDataModal' : false
         }
     },
     methods: {
@@ -55,13 +57,18 @@ export default {
             if(this.action === 'create_new_status'){
                 this.showNewStatusModal = true;
             }
+            if(this.action === 'download_data') {
+                this.showDownloadDataModal = true;
+            }
         },
         hideModal() {
             this.showCreateNewTaskModal = false;
         },
         hideNewStatusModal() {
             this.showNewStatusModal = false;
-
+        },
+        hideDownloadDataModal() {
+            this.showDownloadDataModal = false;
         }
     }
 }

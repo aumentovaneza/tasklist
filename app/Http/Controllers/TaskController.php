@@ -101,4 +101,40 @@ class TaskController extends Controller
         return response(['message' => 'Successfully restored task/s'], 200);
 
     }
+
+    public function downloadTasks()
+    {
+        $fileName = 'all_tasks_'. Auth::user()->name .'.json';
+        $tasks = Task::where('user_id', Auth::user()->id)->with('status')->get();
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('ID','NAME', 'DESCRIPTION', 'PARENT ID', 'STATUS', 'START DATE','END DATE');
+
+        $callback = function() use($columns, $tasks) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($tasks as $task) {
+                $row['ID'] = $task->id;
+                $row['NAME']  = $task->name;
+                $row['DESCRIPTION']    = $task->description;
+                $row['PARENT ID']    = $task->parent_task_id;
+                $row['STATUS']  =  $task->status->name;
+                $row['START DATE']  = $task->start_date;
+                $row['END DATE']  = $task->end_date;
+
+                fputcsv($file, array($row['ID'], $row['NAME'], $row['DESCRIPTION'], $row['PARENT ID'] , $row['STATUS'],
+                    $row['START DATE'],$row['END DATE']));
+            }
+
+            fclose($file);
+        };
+        return response()->stream($callback, 200, $headers);
+    }
 }

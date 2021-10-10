@@ -57,7 +57,7 @@
                 <generic-button text='View Statistics' color="blue" action="#"></generic-button>
                 <generic-button text='Archived Tasks' color="yellow" action="#"></generic-button>
                 <generic-button text='Create new status' color="purple" action="create_new_status"></generic-button>
-                <generic-button text='Download Data' color="green" action="#"></generic-button>
+                <generic-button text='Download Data' color="green" action="download_data"></generic-button>
             </div>
         </div>
     </section>
