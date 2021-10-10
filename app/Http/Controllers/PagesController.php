@@ -16,7 +16,12 @@ class PagesController extends Controller
 
     public function dashboardPage()
     {
-        $tasks = Task::where('user_id', Auth::user()->id)->where('parent_task_id','=',null)->where('deleted_at',null)->get();
+        // Need to filter out to only get the tasks for today
+        $tasks = Task::where('user_id', Auth::user()->id)
+                    ->where('parent_task_id','=',null)
+                    ->where('deleted_at',null)
+                    ->orderBy('order', 'asc')
+                    ->get();
 
         return view('dashboard')->with(['tasks' => TaskResource::collection($tasks)]);
     }

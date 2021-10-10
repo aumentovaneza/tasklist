@@ -1,21 +1,27 @@
 <template>
-    <button type="button"
-            :class="getClass()"
-            class="inline-flex mb-2 items-center justify-center px-4 py-2 border border-transparent text-sm
-            font-medium rounded-md shadow-sm text-white  focus:outline-none focus:ring-2
-            focus:ring-offset-2 "
-    >
-        {{ text }}
-    </button>
+    <div>
+        <button @click="showModalOnClick"
+                type="button"
+                :class="getClass()"
+                class="inline-flex mb-2 items-center justify-center px-4 py-2 border border-transparent text-sm
+                font-medium rounded-md shadow-sm text-white  focus:outline-none focus:ring-2
+                focus:ring-offset-2 "
+        >
+            {{ text }}
+        </button>
+
+        <creat-new-task-component :showModal="showCreateNewTaskModal" @click="hideNewTaskModal" ref="newTask"></creat-new-task-component>
+    </div>
 </template>
 
 <script>
 export default {
     name: "ButtonComponent",
-    props: ['color','text','action'],
+    props: ['color','text','action','url'],
     data : function() {
         return {
-            'class' : ""
+            'class' : "",
+            'showCreateNewTaskModal' : false
         }
     },
     methods: {
@@ -39,6 +45,14 @@ export default {
             if (this.color === 'purple') {
                 return 'bg-purple-600 hover:bg-purple-700 focus:ring-purple-500'
             }
+        },
+        showModalOnClick() {
+            if (this.action === 'create_new_task') {
+                this.showCreateNewTaskModal = true;
+            }
+        },
+        hideNewTaskModal() {
+            this.showCreateNewTaskModal = false;
         }
     }
 }

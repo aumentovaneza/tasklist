@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [PagesController::class, 'loginPage'])->name('home');
-Route::get('/dashboard', [PagesController::class, 'dashboardPage'])->name('dashboard');
+Route::get('/dashboard', [PagesController::class, 'dashboardPage'])->name('dashboard')->middleware('auth');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     // User

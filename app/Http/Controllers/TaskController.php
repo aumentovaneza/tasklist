@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,10 @@ class TaskController extends Controller
 
     public function manageTask(TaskRequest $request)
     {
-        DB::transaction();
+        DB::beginTransaction();
+
+        $lastTaskOrder = Auth::user()->tasks->last()->order;
+        $order = $lastTaskOrder + 1;
 
         try{
             $task = Task::updateOrCreate([
@@ -35,8 +39,9 @@ class TaskController extends Controller
                 'status_id'         => $request->status_id,
                 'parent_task_id'    => $request->parent_task_id ?? null,
                 'is_child'          => isset($request->parent_task_id) ? true : false,
-                'start_date'        => $request->start_date,
+                'start_date'        => $request->start_date != null ? $request->start_date : Carbon::now(),
                 'end_date'          => $request->end_date,
+                'order'             => $request->order != null ? $request->order : $order
             ]);
 
             $message = null;

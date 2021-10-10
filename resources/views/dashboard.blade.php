@@ -4,26 +4,16 @@
     <div class="flex items-center space-x-5">
         <div class="flex-shrink-0">
             <div class="relative">
-                @if(Auth::user())
-                    <img class="h-16 w-16 rounded-full" src="{{'https://ui-avatars.com/api/?name='. Auth::user()->name }}"  alt="">
-                @else
-                    <img class="h-16 w-16 rounded-full" src="{{'https://ui-avatars.com/api/?name=Guest'}}" alt="">
-                @endif
-                    <span class="absolute inset-0 shadow-inner rounded-full" aria-hidden="true"></span>
+                <img class="h-16 w-16 rounded-full" src="{{'https://ui-avatars.com/api/?name='. Auth::user()->name }}"  alt="">
+                <span class="absolute inset-0 shadow-inner rounded-full" aria-hidden="true"></span>
             </div>
         </div>
         <div>
-            @if(Auth::user())
             <h1 class="text-2xl font-bold text-gray-900">{{ Auth::user()->name }}</h1>
-            @else
-                <h1 class="text-2xl font-bold text-gray-900">Guest</h1>
-            @endif
         </div>
     </div>
     <div class="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
-        <button type="button" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">
-            New Task
-        </button>
+        <generic-button text='New Task' color="blue" action="create_new_task"></generic-button>
     </div>
 </div>
 <div class="mt-8 max-w-3xl mx-auto grid grid-cols-1 gap-6 sm:px-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
@@ -33,10 +23,10 @@
             <div class="bg-white shadow sm:rounded-lg">
                 <div class="px-4 py-5 sm:px-6">
                     <h2 class="text-lg leading-6 font-medium text-gray-900">
-                        Task List
+                        Task List for {{ \Carbon\Carbon::now()->format('m-d-Y') }}
                     </h2>
                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                        Here lists your current tasks for the day
+                        Here lists all your current tasks
                     </p>
                 </div>
                 <div class="border-t border-gray-200 px-4 py-5 sm:px-6">

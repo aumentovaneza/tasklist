@@ -13,10 +13,10 @@ class TaskStatusController extends Controller
 {
     public function getAllStatusesByUser()
     {
-        $statuses = TaskStatus::where('is_default_status', true)->where('user_id', Auth::user()->id)->get();
+        $statuses = TaskStatus::where('is_default_status', true)->orwhere('user_id', Auth::user()->id)->get();
 
         return response([
-            'data' => $statuses,
+            'data' =>  BasicTaskStatusResource::collection($statuses),
             'message' => 'Successfully retrieved user tasks'
         ], 200);
     }
