@@ -63,24 +63,18 @@ class TaskController extends Controller
     public function delete($id)
     {
         $task = Task::find($id);
-        DB::transaction();
-        try {
 
-            if (empty($task->subtasks)) {
-                $task->delete();
-            } else {
-                $subtasks = $task->subtasks;
-
-                foreach ($subtasks as $subtask) {
-                    $subtask->delete();
-                }
+        if ($task->subtasks->isEmpty()) {
+            $task->delete();
+        } else {
+            $subtasks = $task->subtasks;
+            foreach ($subtasks as $subtask) {
+                $subtask->delete();
             }
-
-            return response(['message' => 'Successfully deleted task'], 200);
-
-        } catch (\Exception $e) {
-            return response(['success' => false, 'message' => $e->getMessage()], 422);
+            $task->delete();
         }
+
+        return response(['message' => 'Successfully deleted task'], 200);
     }
 
     public function restoreTask($id)

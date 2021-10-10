@@ -31,7 +31,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     // Tasks
     Route::get('task/{id}',[TaskController::class, 'getTaskByID'])->name('get.task.by.id');
     Route::post('manage/task',[TaskController::class, 'manageTask'])->name('manage.task');
-    Route::delete('delete/task/{id}',[TaskController::class,'delete'])->name('delete.task');
+    Route::post('delete/task/{id}',[TaskController::class,'delete'])->name('delete.task');
     Route::post('restore/task/{id}', [TaskController::class,'restoreTask'])->name('restore.task');
 
     //Task Statuses
