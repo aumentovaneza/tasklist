@@ -6,7 +6,7 @@
                 <!--header-->
                 <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                     <h3 class="text-xl font-semibold">
-                        <span class="wide">Download Data Modal</span>
+                        <span class="wide">Statistics Modal</span>
                     </h3>
                     <button class="p-1 text-gray-500 ml-auto bg-transparent border-0 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" @click="hideModal()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -18,6 +18,7 @@
                     <div class="space-y-6 p-5 sm:space-y-5">
                         <div class="space-y-8 divide-y divide-gray-200">
                             <div class="space-y-8 divide-y divide-gray-200">
+
                                 <!-- This example requires Tailwind CSS v2.0+ -->
                                 <div>
                                     <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
@@ -72,7 +73,7 @@ export default {
     props : ['showModal'],
     data : function (){
       return {
-          stats : []
+          stats : [],
       }
     },
     mounted() {
@@ -87,6 +88,7 @@ export default {
         hideModal() {
             this.$emit("click", this.showModal);
         },
+
     }
 
 }
