@@ -10,11 +10,12 @@
             {{ text }}
         </button>
 
-        <task-modal-component :showModal="showCreateNewTaskModal" :action="action" :parent="parent" @click="hideModal" ref="newTask"></task-modal-component>
+        <task-modal-component :showModal="showCreateNewTaskModal" :parent="parent" @click="hideModal" ref="newTask"></task-modal-component>
         <new-status-modal-component :showModal="showNewStatusModal" @click="hideNewStatusModal"></new-status-modal-component>
         <download-data-modal-component :showModal="showDownloadDataModal" @click="hideDownloadDataModal"></download-data-modal-component>
-        <restore-data-modal-component :showModal="showRestoreDataModal" :action="action" @click="hideRestoreDataModal"></restore-data-modal-component>
-        <statistics-modal-component :showModal="showStatisticsDataModal" :action="action" @click="hideStatisticsDataModal"></statistics-modal-component>
+        <restore-data-modal-component :showModal="showRestoreDataModal"  @click="hideRestoreDataModal"></restore-data-modal-component>
+        <statistics-modal-component :showModal="showStatisticsDataModal" @click="hideStatisticsDataModal"></statistics-modal-component>
+        <task-reorder-modal-component :showModal="showTaskReOrderModal"  @click="hideReOrderTaskModal"></task-reorder-modal-component>
     </div>
 </template>
 
@@ -29,7 +30,8 @@ export default {
             'showNewStatusModal' : false,
             'showDownloadDataModal' : false,
             'showRestoreDataModal' : false,
-            'showStatisticsDataModal' : false
+            'showStatisticsDataModal' : false,
+            'showTaskReOrderModal' : false,
         }
     },
     methods: {
@@ -70,6 +72,9 @@ export default {
             if(this.action === 'show_statistics') {
                 this.showStatisticsDataModal = true;
             }
+            if(this.action === 'change_order') {
+                this.showTaskReOrderModal = true;
+            }
         },
         hideModal() {
             this.showCreateNewTaskModal = false;
@@ -85,6 +90,9 @@ export default {
         },
         hideStatisticsDataModal(){
             this.showStatisticsDataModal = false;
+        },
+        hideReOrderTaskModal(){
+            this.showTaskReOrderModal = false;
         }
     }
 }

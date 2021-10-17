@@ -64,34 +64,34 @@
                         </form>
                     </div>
                 </div>
-                <div class="space-y-8 sm:space-y-5">
-                    <div class="space-y-6 p-5 sm:space-y-5">
-                        <div class="space-y-8 divide-y divide-gray-200">
-                            <div class="flex">
-                                <h3 class="text-xl font-semibold mr-5">
-                                    <span class="wide">Subtasks</span>
-                                </h3>
-                                <generic-button text='Create Subtask' :parent="parent" color="blue" action="create_new_task"></generic-button>
-                            </div>
-                            <div v-if="subtasks.length > 0">
-                            <div class="bg-white shadow overflow-hidden sm:rounded-md">
-                                <ul role="list" class="divide-y divide-gray-200">
-                                    <task-item-component
-                                        v-for="task in subtasks"
-                                        :key="task.id"
-                                        :id = "task.id"
-                                        :name= "task.name"
-                                        :description= "task.description"
-                                        :started = "task.start_date"
-                                        :status =  "task.status"
-                                        :parent = "parent"
-                                    ></task-item-component>
-                                </ul>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="space-y-8 sm:space-y-5">-->
+<!--                    <div class="space-y-6 p-5 sm:space-y-5">-->
+<!--                        <div class="space-y-8 divide-y divide-gray-200">-->
+<!--                            <div class="flex">-->
+<!--                                <h3 class="text-xl font-semibold mr-5">-->
+<!--                                    <span class="wide">Subtasks</span>-->
+<!--                                </h3>-->
+<!--                                <generic-button text='Create Subtask' :parent="parent" color="blue" action="create_new_task"></generic-button>-->
+<!--                            </div>-->
+<!--                            <div v-if="subtasks.length > 0">-->
+<!--                            <div class="bg-white shadow overflow-hidden sm:rounded-md">-->
+<!--                                <ul role="list" class="divide-y divide-gray-200">-->
+<!--                                    <task-item-component-->
+<!--                                        v-for="task in subtasks"-->
+<!--                                        :key="task.id"-->
+<!--                                        :id = "task.id"-->
+<!--                                        :name= "task.name"-->
+<!--                                        :description= "task.description"-->
+<!--                                        :started = "task.start_date"-->
+<!--                                        :status =  "task.status"-->
+<!--                                        :parent = "parent"-->
+<!--                                    ></task-item-component>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="pt-5">
                     <div class="flex justify-end p-5">
                         <button @click="hideModal()" type="button" class="text-white py-2 px-6 border-2 border-red-500 bg-red-500 rounded-md shadow-sm text-sm font-medium bg-transparent hover:bg-red-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
@@ -129,6 +129,7 @@ export default {
         }
     },
     mounted() {
+        console.log(this.id, this.action);
         if(this.id){
             this.getStatusList();
             this.getTaskItem();

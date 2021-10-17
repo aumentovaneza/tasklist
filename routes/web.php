@@ -37,6 +37,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('tasks/download', [TaskController::class,'downloadTasks'])->name('download.data');
     Route::get('tasks/get/archived',[TaskController::class, 'getArchivedTasks'])->name('get.archived.tasks');
     Route::get('tasks/get/stats',[TaskController::class, 'getStatistics'])->name('get.stats');
+    Route::post('tasks/update/order', [TaskController::class, 'updateOrder'])->name('update.order');
+
     //Task Statuses
     Route::get('get/all/statuses', [TaskStatusController::class, 'getAllStatusesByUser'])->name('get.all.statuses.by.user');
     Route::post('create/new/status', [TaskStatusController::class, 'create'])->name('create.new.status');

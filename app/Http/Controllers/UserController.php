@@ -11,7 +11,11 @@ class UserController extends Controller
 {
     public function getTasks()
     {
-        $tasks = Task::where('user_id', Auth::user()->id)->where('parent_task_id','=',null)->where('deleted_at',null)->get();
+        $tasks = Task::where('user_id', Auth::user()->id)
+            ->where('parent_task_id','=',null)
+            ->where('deleted_at',null)
+            ->orderBy('order','ASC')
+            ->get();
 
         return response([
             'data' => TaskResource::collection($tasks),

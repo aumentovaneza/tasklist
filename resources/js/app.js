@@ -45,10 +45,12 @@ Vue.component('sign-out-button', require('./components/SignOutButton.vue').defau
 Vue.component('generic-button', require('./components/ButtonComponent.vue').default);
 Vue.component('task-item-component', require('./components/TaskItemComponent.vue').default);
 Vue.component('task-modal-component', require('./components/modals/TaskModal.vue').default);
+Vue.component('task-reorder-modal-component', require('./components/modals/TaskReOrderModal.vue').default);
 Vue.component('new-status-modal-component', require('./components/modals/NewStatusModal.vue').default);
 Vue.component('download-data-modal-component', require('./components/modals/DownloadDataModal.vue').default);
 Vue.component('restore-data-modal-component', require('./components/modals/RestoreArchivedTasksModal.vue').default);
 Vue.component('task-item-restore-component', require('./components/TaskItemRestoreComponent.vue').default);
+Vue.component('tasks-list-component', require('./components/TasksListComponent.vue').default);
 Vue.component('statistics-modal-component', require('./components/modals/StatisticsModal.vue').default);
 
 /**

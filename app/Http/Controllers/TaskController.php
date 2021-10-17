@@ -172,4 +172,15 @@ class TaskController extends Controller
         ]
         ]);
     }
+
+    public function updateOrder(Request $request)
+    {
+        foreach($request->items as $item){
+            $task = Task::find($item['item']['id']);
+            $task->order = $item['order'];
+            $task->save();
+        }
+
+        return response()->json(['message' => 'Successfully updated order']);
+    }
 }

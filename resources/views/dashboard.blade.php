@@ -42,8 +42,8 @@
                                     status = "{{ $task->status->name }}"
                                  ></task-item-component>
                             @endforeach
-
                         </ul>
+{{--                        <tasks-list-component></tasks-list-component>--}}
                     </div>
                 </div>
             </div>
@@ -58,6 +58,7 @@
                 <generic-button text='Archived Tasks' color="yellow" action="restore_task"></generic-button>
                 <generic-button text='Create new status' color="purple" action="create_new_status"></generic-button>
                 <generic-button text='Download Data' color="green" action="download_data"></generic-button>
+                <generic-button text='Change Task Order' color="blue" action="change_order"></generic-button>
             </div>
         </div>
     </section>
