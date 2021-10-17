@@ -30,6 +30,14 @@
                                                 {{ stats.completed }}
                                             </dd>
                                         </div>
+                                        <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+                                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                                Total Cancelled Tasks
+                                            </dt>
+                                            <dd class="mt-1 text-3xl font-semibold text-gray-900">
+                                                {{ stats.cancelled }}
+                                            </dd>
+                                        </div>
 
                                         <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
                                             <dt class="text-sm font-medium text-gray-500 truncate">
@@ -42,14 +50,6 @@
 
                                         <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
                                             <dt class="text-sm font-medium text-gray-500 truncate">
-                                                Total Cancelled Tasks
-                                            </dt>
-                                            <dd class="mt-1 text-3xl font-semibold text-gray-900">
-                                                {{ stats.cancelled }}
-                                            </dd>
-                                        </div>
-                                        <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                                            <dt class="text-sm font-medium text-gray-500 truncate">
                                                 Other Status
                                             </dt>
                                             <dd class="mt-1 text-3xl font-semibold text-gray-900">
@@ -58,6 +58,16 @@
                                         </div>
                                     </dl>
                                 </div>
+                                <vue-bar-graph
+                                    :points="barStats"
+                                    :width="900"
+                                    :height="300"
+                                    :show-values="true"
+                                    :show-y-axis="true"
+                                    :show-x-axis="false"
+                                    :use-custom-labels="true"
+                                    :labels="['Completed', 'Cancelled', 'Mar', 'Pending', 'Other Status']"
+                                />
                             </div>
                         </div>
                     </div>
@@ -68,12 +78,18 @@
 </template>
 
 <script>
+import VueBarGraph from 'vue-bar-graph';
+
 export default {
     name: "StatisticsModal",
+    components: {
+        VueBarGraph,
+    },
     props : ['showModal'],
     data : function (){
       return {
           stats : [],
+          barStats : [],
       }
     },
     mounted() {
@@ -83,6 +99,9 @@ export default {
         getStats(){
             axios.get('../user/tasks/get/stats').then((response) => {
                 this.stats = response.data.data
+                this.barStats = Object.keys(response.data.data).map((key) => {
+                    return response.data.data[key]
+                })
             });
         },
         hideModal() {
