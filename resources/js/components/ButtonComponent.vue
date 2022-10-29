@@ -16,6 +16,7 @@
         <restore-data-modal-component :showModal="showRestoreDataModal"  :action="action" @click="hideRestoreDataModal"></restore-data-modal-component>
         <statistics-modal-component :showModal="showStatisticsDataModal" :action="action" @click="hideStatisticsDataModal"></statistics-modal-component>
         <task-reorder-modal-component :showModal="showTaskReOrderModal"  :action="action" @click="hideReOrderTaskModal"></task-reorder-modal-component>
+        <group-modal :showModal="showGroupModal"  :action="action" @click="hideGroupModal"></group-modal>
     </div>
 </template>
 
@@ -32,6 +33,7 @@ export default {
             'showRestoreDataModal' : false,
             'showStatisticsDataModal' : false,
             'showTaskReOrderModal' : false,
+            'showGroupModal' : false
         }
     },
     methods: {
@@ -75,6 +77,9 @@ export default {
             if(this.action === 'change_order') {
                 this.showTaskReOrderModal = true;
             }
+            if(this.action === 'group_modal') {
+                this.showGroupModal = true;
+            }
         },
         hideModal() {
             this.showCreateNewTaskModal = false;
@@ -92,6 +97,9 @@ export default {
             this.showStatisticsDataModal = false;
         },
         hideReOrderTaskModal(){
+            this.showTaskReOrderModal = false;
+        },
+        hideGroupModal(){
             this.showTaskReOrderModal = false;
         }
     }

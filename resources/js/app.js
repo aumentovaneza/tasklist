@@ -52,6 +52,10 @@ Vue.component('restore-data-modal-component', require('./components/modals/Resto
 Vue.component('task-item-restore-component', require('./components/TaskItemRestoreComponent.vue').default);
 Vue.component('tasks-list-component', require('./components/TasksListComponent.vue').default);
 Vue.component('statistics-modal-component', require('./components/modals/StatisticsModal.vue').default);
+Vue.component('group-modal', require('./components/modals/GroupModal.vue').default);
+Vue.component('group-list-component', require('./components/GroupListComponent.vue').default);
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
