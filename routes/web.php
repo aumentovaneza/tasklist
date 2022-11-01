@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\PagesController;
@@ -24,6 +25,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [PagesController::class, 'loginPage'])->name('home');
+Route::group(['prefix' => 'register'], function () {
+    Route::get('/', [PagesController::class, 'registerPage'])->name('register');
+    Route::post('/', [RegisterController::class, 'create'])->name('register.create');
+});
+
+
 Route::get('/dashboard', [PagesController::class, 'dashboardPage'])->name('dashboard')->middleware('auth');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {

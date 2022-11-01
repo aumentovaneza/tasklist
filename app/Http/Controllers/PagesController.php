@@ -14,6 +14,11 @@ class PagesController extends Controller
         return view('login');
     }
 
+    public function registerPage()
+    {
+        return view('register');
+    }
+
     public function dashboardPage()
     {
         // Need to filter out to only get the tasks for today
