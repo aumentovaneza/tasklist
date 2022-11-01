@@ -99,7 +99,6 @@ export default {
         },
         deleteTask(id) {
             axios.post('../user/delete/task/'+id).then(response => {
-                console.log(response);
                 window.location.reload();
             });
         },

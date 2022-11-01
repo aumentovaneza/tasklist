@@ -16,7 +16,8 @@
                         </div>
                     </div>
                     <div class="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
-                        <generic-button text='New Group' color="blue" action="group_modal"></generic-button>
+{{--                        <generic-button text='New Group' color="blue" action="group_modal"></generic-button>--}}
+                        <generic-button text='New Group Item' color="blue" action="group_item_modal"></generic-button>
                     </div>
                 </div>
             </div>

@@ -129,7 +129,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.id, this.action);
         if(this.id){
             this.getStatusList();
             this.getTaskItem();

@@ -17,6 +17,7 @@
         <statistics-modal-component :showModal="showStatisticsDataModal" :action="action" @click="hideStatisticsDataModal"></statistics-modal-component>
         <task-reorder-modal-component :showModal="showTaskReOrderModal"  :action="action" @click="hideReOrderTaskModal"></task-reorder-modal-component>
         <group-modal :showModal="showGroupModal"  :action="action" @click="hideGroupModal"></group-modal>
+        <group-member-modal :showModal="showGroupMemberModal"  :action="action" @click="hideGroupMemberModal"></group-member-modal>
     </div>
 </template>
 
@@ -33,7 +34,8 @@ export default {
             'showRestoreDataModal' : false,
             'showStatisticsDataModal' : false,
             'showTaskReOrderModal' : false,
-            'showGroupModal' : false
+            'showGroupModal' : false,
+            'showGroupMemberModal' : false
         }
     },
     methods: {
@@ -80,6 +82,9 @@ export default {
             if(this.action === 'group_modal') {
                 this.showGroupModal = true;
             }
+            if(this.action === 'group_item_modal') {
+                this.showGroupMemberModal = true;
+            }
         },
         hideModal() {
             this.showCreateNewTaskModal = false;
@@ -101,6 +106,9 @@ export default {
         },
         hideGroupModal(){
             this.showTaskReOrderModal = false;
+        },
+        hideGroupMemberModal(){
+            this.showGroupMemberModal = false;
         }
     }
 }

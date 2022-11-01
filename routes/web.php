@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskStatusController;
@@ -48,8 +49,14 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'groups', 'middleware' => 'auth'], function () {
         Route::get('',[GroupController::class, 'index'])->name('get.all.groups');
         Route::get('/{group}',[GroupController::class, 'getMembersById'])->name('get.member.groups');
-
         Route::post('/create', [GroupController::class, 'create'])->name('create.group');
+
+        Route::group(['prefix' => 'member', 'middleware' => 'auth'], function (){
+            Route::get('/all',[GroupMemberController::class, 'index'])->name('get.all.members');
+            Route::post('/create', [GroupMemberController::class, 'create'])->name('create.member');
+            Route::put('/update/{member}', [GroupMemberController::class, 'update'])->name('update.member');
+
+        });
     });
 
 });

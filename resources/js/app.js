@@ -53,6 +53,7 @@ Vue.component('task-item-restore-component', require('./components/TaskItemResto
 Vue.component('tasks-list-component', require('./components/TasksListComponent.vue').default);
 Vue.component('statistics-modal-component', require('./components/modals/StatisticsModal.vue').default);
 Vue.component('group-modal', require('./components/modals/GroupModal.vue').default);
+Vue.component('group-member-modal', require('./components/modals/GroupMemberModal.vue').default);
 Vue.component('group-list-component', require('./components/GroupListComponent.vue').default);
 
 

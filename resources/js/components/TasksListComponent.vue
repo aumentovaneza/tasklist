@@ -93,7 +93,6 @@ export default {
     methods : {
         getTasks() {
             axios.get('../user/tasks').then((response) => {
-                console.log(response.data.data);
                 this.tasks  = response.data.data;
             });
         },
